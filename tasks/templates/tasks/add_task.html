@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+
+    <!-- Google Fonts for a stylish look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Inline CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.pinimg.com/736x/a3/d6/c7/a3d6c7f4e45acf38f7a054d154a6be15.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        form {
+            width: 50%;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9); /* Transparent background for contrast */
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #fafafa;
+        }
+
+        button {
+            background-color: #FF6347; /* Pinterest red color */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #FF4500;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #FF6347;
+            font-size: 16px;
+        }
+
+        a:hover {
+            color: #FF4500;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><i class="fas fa-tasks icon"></i> Add New Task</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="description">Task Description</label>
+        <input type="text" name="description" id="description" placeholder="Enter task description..." required><br><br>
+
+        <label for="due_date">Due Date</label>
+        <input type="date" name="due_date" id="due_date" required><br><br>
+
+        <button type="submit"><i class="fas fa-plus-circle icon"></i> Add Task</button>
+    </form>
+
+    <a href="{% url 'index' %}"><i class="fas fa-arrow-left icon"></i> Back to Task List</a>
+
+</body>
+</html>

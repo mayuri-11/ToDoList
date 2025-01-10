@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <!-- Google Fonts for a stylish look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Inline CSS -->
+    <style>
+        /* Reset some default styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.pinimg.com/736x/a3/d6/c7/a3d6c7f4e45acf38f7a054d154a6be15.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* Center table and add background styling */
+        .task-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: #FF6347; /* Pinterest red color */
+            margin-right: 10px;
+        }
+
+        a:hover {
+            color: #FF4500;
+        }
+
+        .status-completed {
+            color: #28a745; /* Green for completed */
+        }
+
+        .status-pending {
+            color: #ffc107; /* Yellow for pending */
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .add-task-link {
+            text-align: center;
+            display: inline-block;
+            background-color: #FF6347;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .add-task-link:hover {
+            background-color: #FF4500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="task-container">
+        <h1><i class="fas fa-check-circle icon"></i> To-Do List</h1>
+
+        <a href="{% url 'add_task' %}" class="add-task-link"><i class="fas fa-plus-circle icon"></i> Add Task</a>
+
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.description }}</td>
+                <td>{{ task.due_date }}</td>
+                <td class="{% if task.completed %}status-completed{% else %}status-pending{% endif %}">
+                    {% if task.completed %}
+                        <i class="fas fa-check-circle icon"></i> Completed
+                    {% else %}
+                        <i class="fas fa-clock icon"></i> Pending
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not task.completed %}
+                        <a href="{% url 'mark_completed' forloop.counter0 %}"><i class="fas fa-check icon"></i> Mark as Completed</a>
+                    {% endif %}
+                    <a href="{% url 'delete_task' forloop.counter0 %}"><i class="fas fa-trash-alt icon"></i> Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>
