@@ -1,7 +1,7 @@
-# To-Do List with Due Dates Using Django (DSA Project) 📅
+# To-Do List with Due Dates Using Python & Django (DSA Project) 📅
 
 ## Introduction 
-This project is a simple To-Do List application built with Django that focuses on using Data Structures and Algorithms (DSA) concepts. The primary goal is to manage tasks with due dates and implement sorting functionality to order tasks based on their due dates. Unlike traditional implementations, this project uses in-memory data storage (a Python list) instead of a database, emphasizing lightweight and efficient operations. 📊
+This project is a simple To-Do List application built with Python and Django that focuses on using Data Structures and Algorithms (DSA) concepts. The primary goal is to manage tasks with due dates and implement sorting functionality to order tasks based on their due dates. Unlike traditional implementations, this project uses in-memory data storage (a Python list) instead of a database, emphasizing lightweight and efficient operations. 📊
 
 ---
 
